@@ -1,0 +1,92 @@
+BILLING POLICY DOCUMENT
+Platform Support — Billing & Payments
+Last Updated: January 2025
+
+==============================================
+SECTION 1: SUBSCRIPTION PLANS & PRICING
+==============================================
+
+Free Plan:
+- $0/month
+- 100 API calls/minute
+- 5GB storage
+- Community support only
+- No SLA guarantee
+
+Pro Plan:
+- $49/month (billed monthly) or $39/month (billed annually)
+- 1,000 API calls/minute
+- 100GB storage
+- Email support with 24-hour response SLA
+- 99.9% uptime SLA
+
+Enterprise Plan:
+- Custom pricing (contact sales@platform.com)
+- Unlimited API calls
+- Custom storage quotas
+- Dedicated account manager
+- 4-hour response SLA
+- 99.99% uptime SLA
+
+==============================================
+SECTION 2: BILLING CYCLE & INVOICING
+==============================================
+
+- Billing cycles run from the 1st to the last day of each calendar month.
+- Invoices are generated on the 1st of each month for the previous month.
+- Invoices are sent to the primary billing email on file.
+- Payment is due within 14 days of invoice generation.
+- Accepted payment methods: Visa, Mastercard, American Express, SEPA Direct Debit, Bank Transfer (Enterprise only).
+
+==============================================
+SECTION 3: REFUND POLICY
+==============================================
+
+Annual Plan Refunds:
+- Full refund available within 30 days of annual plan purchase if you have used fewer than 1,000 API calls.
+- Prorated refund available within 90 days for unused months.
+- No refund after 90 days of annual plan purchase.
+
+Monthly Plan Refunds:
+- No refunds for monthly subscriptions once the billing cycle has started.
+- Exception: If service downtime exceeded our SLA in the billing period, a service credit equivalent to the downtime cost will be applied.
+
+Duplicate Charge Refunds:
+- Duplicate charges are identified and refunded within 5-7 business days.
+- To report a duplicate charge, submit a ticket via the billing portal with your invoice numbers.
+
+==============================================
+SECTION 4: PAYMENT FAILURES & DUNNING
+==============================================
+
+If a payment fails:
+- Day 1: Payment retry and email notification sent
+- Day 3: Second payment retry
+- Day 7: Third retry; account flagged as past-due
+- Day 14: Service suspension; data retained for 30 days
+- Day 44: Account and data permanently deleted
+
+To prevent service interruption, ensure your payment method is current in Billing Settings.
+
+==============================================
+SECTION 5: DISPUTE RESOLUTION
+==============================================
+
+To raise a billing dispute:
+1. Log into your account
+2. Navigate to Billing → Dispute a Charge
+3. Select the invoice and describe the discrepancy
+4. Our billing team will respond within 3 business days
+
+All disputes must be raised within 60 days of the charge date. Disputes older than 60 days cannot be processed.
+
+For urgent billing issues, email: billing@platform.com
+
+==============================================
+SECTION 6: TAX & COMPLIANCE
+==============================================
+
+- EU customers: VAT applied at the applicable local rate
+- US customers: Sales tax applied based on state regulations
+- Tax exemption: Upload your tax exemption certificate in Billing Settings
+- W-9 / W-8 forms available on request via billing@platform.com

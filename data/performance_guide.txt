@@ -1,0 +1,143 @@
+PERFORMANCE OPTIMIZATION GUIDE
+Platform Engineering — Best Practices
+January 2025
+
+==============================================
+SECTION 1: API PERFORMANCE BEST PRACTICES
+==============================================
+
+1. USE PAGINATION FOR LARGE DATASETS
+
+Never request all records in a single call. Use cursor-based pagination:
+
+GET /v1/records?limit=100&cursor=eyJpZCI6MTAwfQ==
+
+Response includes:
+{
+  "data": [...],
+  "next_cursor": "eyJpZCI6MjAwfQ==",
+  "has_more": true
+}
+
+Recommended page sizes:
+- Real-time displays: 10-25 records
+- Data exports: 100-500 records
+- Batch processing: 1000 records maximum
+
+2. IMPLEMENT REQUEST CACHING
+
+Cache responses that don't change frequently:
+- User profile data: Cache for 5 minutes
+- Configuration settings: Cache for 1 hour
+- Reference data / lookup tables: Cache for 24 hours
+
+Use ETags for conditional requests:
+GET /v1/settings
+If-None-Match: "etag_value_here"
+
+Server returns 304 Not Modified if unchanged, saving bandwidth.
+
+3. USE COMPRESSION
+
+Always enable gzip compression for API requests and responses:
+Accept-Encoding: gzip, deflate, br
+
+This reduces payload size by 60-80% for JSON responses.
+
+4. BATCH REQUESTS WHERE POSSIBLE
+
+Instead of:
+POST /v1/events (x 100 separate calls)
+
+Use batch endpoint:
+POST /v1/events/batch
+{
+  "events": [event1, event2, ..., event100]
+}
+
+Maximum batch size: 1,000 records per request.
+
+==============================================
+SECTION 2: REDUCING LATENCY
+==============================================
+
+Choose the Right API Region:
+- US East: api-us.platform.com (best for North America)
+- EU West: api-eu.platform.com (best for Europe)
+- Asia Pacific: api-ap.platform.com (best for Asia)
+
+Using the geographically closest endpoint reduces average latency by 40-60%.
+
+Connection Keep-Alive:
+Reuse HTTP connections instead of creating new ones per request. Most HTTP clients support this with a keep-alive header or connection pool.
+
+==============================================
+SECTION 3: MONITORING PLATFORM PERFORMANCE
+==============================================
+
+Key Metrics to Monitor:
+- API Response Time (p50, p95, p99 percentiles)
+- Error Rate (target: below 0.1%)
+- Throughput (requests per second)
+- Cache Hit Rate (target: above 80%)
+
+Access performance dashboards at: Platform Dashboard → Analytics → Performance
+
+Setting Up Alerts:
+Navigate to Settings → Alerts → Add Alert Rule
+Example alert rules:
+- Alert if p99 API latency exceeds 2 seconds
+- Alert if error rate exceeds 1% over 5 minutes
+- Alert if rate limit utilization exceeds 80%
+
+==============================================
+SECTION 4: DATABASE QUERY OPTIMIZATION
+==============================================
+
+When using database integrations:
+
+1. Always use indexed columns in WHERE clauses
+2. Avoid SELECT * — specify only needed columns
+3. Use EXPLAIN ANALYZE to profile slow queries
+4. For time-series data, use partitioned tables
+5. Set appropriate query timeouts (recommended: 30 seconds)
+
+Our integration layer automatically logs slow queries (>5 seconds) in:
+Integrations → Logs → Slow Query Log
+
+==============================================
+SECTION 5: RATE LIMIT MANAGEMENT
+==============================================
+
+Monitor your rate limit consumption:
+
+Response headers included with every API response:
+X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 847
+X-RateLimit-Reset: 1705320060
+
+When approaching limits:
+1. Implement request queuing with delays
+2. Use exponential backoff for retries
+3. Upgrade plan if regularly hitting limits
+4. Contact support for temporary limit increases during peak periods (Enterprise)
+
+==============================================
+SECTION 6: ESTIMATED RESOLUTION TIMES FOR PERFORMANCE ISSUES
+==============================================
+
+If you are experiencing degraded performance:
+
+Self-diagnosable (resolve within 1 hour):
+- Rate limit exceeded → Reduce request frequency or upgrade plan
+- Large payload sizes → Implement pagination and field selection
+- Wrong API region → Switch to geographically closer endpoint
+
+Requires support investigation (1-2 business days):
+- Persistent high latency not explained by above
+- Unexpected error rate increases
+- Database sync performance degradation
+
+Platform-side incidents (per SLA response times):
+- Resolved per severity classification in SLA document
+- Monitor https://status.platform.com for live incident status

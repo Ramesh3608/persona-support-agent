@@ -1,0 +1,110 @@
+SERVICE LEVEL AGREEMENT (SLA) — UPTIME & INCIDENT POLICY
+Platform Support Documentation
+Effective Date: January 2025
+
+==============================================
+SECTION 1: UPTIME COMMITMENTS
+==============================================
+
+Pro Plan:
+- Guaranteed uptime: 99.9%
+- Allowable downtime per month: 43.8 minutes
+- Allowable downtime per year: 8.76 hours
+
+Enterprise Plan:
+- Guaranteed uptime: 99.99%
+- Allowable downtime per month: 4.38 minutes
+- Allowable downtime per year: 52.6 minutes
+
+Uptime is calculated as: ((Total Minutes - Downtime Minutes) / Total Minutes) x 100
+
+Scheduled maintenance windows (communicated 72 hours in advance) are excluded from uptime calculations.
+
+==============================================
+SECTION 2: INCIDENT RESPONSE TIMES
+==============================================
+
+Severity 1 (Critical — Full Service Outage):
+- Initial Response: Within 15 minutes
+- Status Update Frequency: Every 30 minutes
+- Target Resolution Time: 2 hours
+- Applies to: Pro and Enterprise plans
+
+Severity 2 (High — Major Feature Unavailable):
+- Initial Response: Within 1 hour
+- Status Update Frequency: Every 2 hours
+- Target Resolution Time: 8 hours
+
+Severity 3 (Medium — Partial Degradation):
+- Initial Response: Within 4 hours
+- Status Update Frequency: Every 24 hours
+- Target Resolution Time: 3 business days
+
+Severity 4 (Low — Minor Issues / Cosmetic Bugs):
+- Initial Response: Within 24 hours
+- Target Resolution Time: 2 weeks
+
+==============================================
+SECTION 3: SERVICE CREDITS
+==============================================
+
+If monthly uptime falls below the SLA guarantee, customers are entitled to:
+
+Pro Plan Credits:
+- 99.5% – 99.9%: 10% of monthly fee as service credit
+- 99.0% – 99.5%: 25% of monthly fee as service credit
+- Below 99.0%: 50% of monthly fee as service credit
+
+Enterprise Plan Credits:
+- 99.9% – 99.99%: 10% of monthly fee as service credit
+- 99.0% – 99.9%: 25% of monthly fee as service credit
+- Below 99.0%: 50% of monthly fee as service credit
+
+Credits are applied to the next billing cycle automatically. Credits do not carry cash value.
+
+To claim a service credit:
+1. Submit a request within 30 days of the incident
+2. Navigate to Billing → Service Credits → Request Credit
+3. Reference the incident ticket number
+
+==============================================
+SECTION 4: PLANNED MAINTENANCE
+==============================================
+
+Standard Maintenance Window:
+- Every Tuesday, 02:00–04:00 UTC
+- Customers notified via email and status page 72 hours in advance
+
+Emergency Maintenance:
+- Notification sent as early as possible
+- Typically limited to critical security patches
+- Duration usually under 30 minutes
+
+Monitor live system status at: https://status.platform.com
+
+==============================================
+SECTION 5: INCIDENT COMMUNICATION
+==============================================
+
+Incident updates are communicated through:
+1. Status page: https://status.platform.com
+2. Email notifications (ensure incidents@platform.com is not spam-filtered)
+3. In-app notification banner
+4. Slack integration (Enterprise customers with Slack workspace connected)
+
+Post-Incident Report (PIR):
+- Published within 5 business days of Severity 1 or 2 incidents
+- Includes root cause analysis, timeline, and corrective actions
+- Accessible via status page → Past Incidents
+
+==============================================
+SECTION 6: EXCLUSIONS FROM SLA
+==============================================
+
+The SLA does not apply to downtime caused by:
+- Customer's own infrastructure or network
+- Third-party services outside our control
+- Force majeure events
+- Scheduled maintenance (communicated in advance)
+- Customer actions that violate terms of service
+- Free plan users (no SLA guarantee)

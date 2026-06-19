@@ -1,0 +1,95 @@
+SECURITY FAQ & COMPLIANCE DOCUMENT
+Platform Security Team
+Version 3.2 | January 2025
+
+==============================================
+Q1: IS THE PLATFORM SOC 2 TYPE II CERTIFIED?
+==============================================
+
+Yes. We maintain a SOC 2 Type II certification covering Security, Availability, and Confidentiality trust service criteria. Our most recent audit was completed in October 2024, covering a 12-month observation period. The full report is available under NDA to Enterprise customers. Contact security@platform.com to request a copy.
+
+==============================================
+Q2: WHERE IS MY DATA STORED?
+==============================================
+
+By default, data is stored in the US East (Virginia) region using AWS infrastructure.
+
+Enterprise customers can request:
+- EU data residency (Frankfurt, Germany)
+- Asia Pacific residency (Singapore)
+- Custom region deployment (available for contracts above $50K/year)
+
+Data residency preferences are set during initial account configuration and can be changed only during a migration window coordinated with our infrastructure team.
+
+==============================================
+Q3: IS DATA ENCRYPTED?
+==============================================
+
+Yes, at all layers:
+- In Transit: TLS 1.2+ enforced for all API and web traffic. TLS 1.0 and 1.1 are disabled.
+- At Rest: AES-256 encryption for all stored data, including database backups.
+- Key Management: Encryption keys are managed via AWS KMS. Keys are rotated automatically every 90 days.
+- Customer-Managed Keys (CMK): Available to Enterprise customers. Bring your own KMS key for full control.
+
+==============================================
+Q4: HOW DO YOU HANDLE SECURITY INCIDENTS?
+==============================================
+
+Incident Response Process:
+1. Detection: Automated monitoring via SIEM (Security Information and Event Management) system
+2. Triage: Security team evaluates severity within 1 hour of detection
+3. Containment: Affected systems isolated within 2 hours
+4. Customer Notification: Affected customers notified within 72 hours per GDPR requirements
+5. Post-Incident Report: Published within 5 business days
+
+To report a security vulnerability: security@platform.com (PGP key available on our security page)
+We operate a responsible disclosure program with rewards for valid reports.
+
+==============================================
+Q5: WHAT IS YOUR GDPR COMPLIANCE STATUS?
+==============================================
+
+We are fully GDPR compliant:
+- Data Processing Agreement (DPA): Available for all customers at https://platform.com/legal/dpa
+- Right to Access: Data export available in Settings → Data Export
+- Right to Erasure: Account deletion removes all PII within 30 days
+- Data Portability: Export all data in JSON or CSV format
+- GDPR Representative: gdpr@platform.com
+
+==============================================
+Q6: HOW DO I ROTATE MY API KEYS?
+==============================================
+
+Best practice is to rotate API keys every 90 days or immediately if suspected compromise.
+
+To rotate:
+1. Generate a new key in Settings → API Keys (keep both active temporarily)
+2. Update your application to use the new key
+3. Verify the new key works in production
+4. Revoke the old key in Settings → API Keys → Actions → Revoke
+
+Zero-downtime rotation requires briefly having two active keys. Once the old key is revoked, it permanently ceases to function.
+
+==============================================
+Q7: WHAT AUDIT LOGS ARE AVAILABLE?
+==============================================
+
+All plans include basic audit logs covering:
+- Login attempts (successful and failed)
+- API key creation and revocation
+- Settings changes
+- Data export requests
+
+Pro and Enterprise plans additionally log:
+- All API request details (endpoint, timestamp, response code, IP)
+- Team member permission changes
+- Integration connect/disconnect events
+- Data deletion events
+
+Logs are retained for 30 days (Pro) or 1 year (Enterprise). Export via Settings → Audit Logs → Export.
+
+==============================================
+Q8: DO YOU CONDUCT PENETRATION TESTING?
+==============================================
+
+Yes. We conduct annual third-party penetration tests by certified security firms. Summary reports are available to Enterprise customers under NDA. Continuous automated vulnerability scanning runs daily on all production infrastructure.
